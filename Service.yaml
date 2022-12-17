@@ -1,0 +1,20 @@
+apiVersion: v1 
+kind: Service              
+metadata:                                  
+  labels:                  
+    app: minecraft-server
+  name: minecraft-server
+  namespace: mc
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 25565
+    protocol: TCP
+    targetPort: 25565
+  selector:
+    app: minecraft-server
+  sessionAffinity: None
+  type: LoadBalancer
